@@ -22,7 +22,7 @@ abstract class EightHourForecastStreamer {
 
 Forecast nextForecast(Forecast forecast, {bool addHour = true}) {
   final newForecast = Forecast(
-      hour: addHour ? forecast.hour.add(Duration(hours: 1)) : forecast.hour,
+      hour: addHour ? forecast.hour.add(const Duration(hours: 1)) : forecast.hour,
       weatherType: forecast.weatherType,
       tempCelsius: 15 + ((forecast.tempCelsius - 16) % 20),
       humidityPercent: 30 + ((forecast.humidityPercent - 33) % 70),
@@ -73,7 +73,7 @@ class City8HourForecastEmitter implements EightHourForecastStreamer {
 class ForecastEmitter implements IForecastEmitter {
   late final Map<String, EightHourCityForecast> forecasts;
   final Map<String, EightHourForecastStreamer?> emitters = {};
-  final Set<String> citiesUpdated = Set();
+  final Set<String> citiesUpdated = {};
   final controller = StreamController<List<EightHourCityForecast>>.broadcast();
 
   ForecastEmitter() {

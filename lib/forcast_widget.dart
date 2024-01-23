@@ -52,8 +52,8 @@ class ForecastWidget extends StatelessWidget {
           children: [
             _SubRow(
                 rowTextSize: _rowTextSize,
-                leftText: "${DateFormat("d MMMM").format(forecast.hour)}",
-                rightText: "${DateFormat("HH:00").format(forecast.hour)}",
+                leftText: DateFormat("d MMMM").format(forecast.hour),
+                rightText: DateFormat("HH:00").format(forecast.hour),
                 leftFlex: 5,
                 rightFlex: 3),
             _MainRow(

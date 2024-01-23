@@ -14,12 +14,12 @@ extension WeatherIcon on WeatherType {
 }
 
 class City {
-  static final String ustka = "Ustka";
-  static final String warszawa = "Warszawa";
-  static final String gdansk = "Gdańsk";
-  static final String krakow = "Kraków";
-  static final String poznan = "Poznań";
-  static final String zakopane = "Zakopane";
+  static const String ustka = "Ustka";
+  static const String warszawa = "Warszawa";
+  static const String gdansk = "Gdańsk";
+  static const String krakow = "Kraków";
+  static const String poznan = "Poznań";
+  static const String zakopane = "Zakopane";
 }
 
 enum WeatherType {

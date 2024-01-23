@@ -11,7 +11,7 @@ enum ForecastOrder { temp, city }
 class ForecastListScreen extends StatefulWidget {
   final WeatherOracle oracle;
 
-  const ForecastListScreen(this.oracle);
+  const ForecastListScreen(this.oracle, {super.key});
 
   @override
   ForecastListScreenState createState() => ForecastListScreenState();
@@ -23,27 +23,7 @@ class ForecastListScreenState extends State<ForecastListScreen> {
 
   @override
   void initState() {
-    forecasts = [];
-    var forcast = Forecast(
-      hour: DateTime.now(),
-      weatherType: WeatherType.sunny,
-      tempCelsius: 45,
-      humidityPercent: 54,
-      airQualityIndex: 432,
-    );
-
-    forecasts.add(EightHourCityForecast("Poland", [
-      forcast,
-      forcast,
-      forcast,
-      forcast,
-      forcast,
-      forcast,
-      forcast,
-      forcast,
-      forcast,
-    ]));
-
+    forecasts = widget.oracle.getCurrentALlCities8HourForecasts();
     super.initState();
   }
 
@@ -51,18 +31,21 @@ class ForecastListScreenState extends State<ForecastListScreen> {
     return InkWell(
       key: ValueKey(forecast.city),
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => ForecastDetailsScreen(oracle: WeatherOracle(), initialForecast: forecast)
-        ),);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ForecastDetailsScreen(
+                  oracle: WeatherOracle(), initialForecast: forecast)),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Row(
           children: [
             Text(forecast.city),
-            Spacer(),
+            const Spacer(),
             Text(forecast.first.getTemperatureDescription()),
-            VerticalDivider(width: 12),
+            const VerticalDivider(width: 12),
             Icon(forecast.first.weatherType.icon()),
           ],
         ),
@@ -92,7 +75,7 @@ class ForecastListScreenState extends State<ForecastListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Weather forecast for Poland"),
+          title: const Text("Weather forecast for Poland"),
           actions: [
             IconButton(
               key: WidgetKey.sortBtn,
@@ -100,7 +83,7 @@ class ForecastListScreenState extends State<ForecastListScreen> {
               tooltip: 'Change ordering',
               onPressed: () {
                 setState(() {
-                  WidgetKey.sortBtn;
+
                 });
               },
             ),
